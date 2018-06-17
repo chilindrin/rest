@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTes {
+public class HelloControllerTest {
 	
 	@Autowired
 	private MockMvc mvc;
@@ -28,5 +28,5 @@ public class HelloControllerTes {
         .andExpect(status().isOk())
         .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
 	}
-
+	
 }

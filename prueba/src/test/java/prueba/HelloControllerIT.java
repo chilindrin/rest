@@ -3,6 +3,7 @@ package prueba;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.junit.Before;
@@ -36,6 +37,14 @@ public class HelloControllerIT {
 	public void getHello() {
 		ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
 		assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
+	}
+	
+	@Test
+	public void getZip() throws MalformedURLException {
+		URL zipUrl = new URL("http://localhost:" +port + "/zip");
+		
+		ResponseEntity<byte[]> result = template.getForEntity(zipUrl.toString(), byte[].class);
+		System.out.println(result);
 	}
 
 }
