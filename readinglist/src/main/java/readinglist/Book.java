@@ -25,6 +25,6 @@ public class Book {
 	
 	private String author;
 	
-	private String descriptor;
+	private String description;
 
 }
