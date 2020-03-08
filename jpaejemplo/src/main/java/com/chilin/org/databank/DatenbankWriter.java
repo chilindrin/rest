@@ -1,4 +1,4 @@
-package com.chilin.org.aver;
+package com.chilin.org.databank;
 
 import com.chilin.org.model.Usuario;
 import com.chilin.org.repository.UsuarioRepository;
@@ -9,19 +9,18 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ConexionDB implements CommandLineRunner {
+public class DatenbankWriter implements CommandLineRunner {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private DataReader dataReader;
+
     @Override
     public void run(String... args) throws Exception {
-        Usuario prueba = new Usuario();
-        prueba.setNombre("Andres");
-        prueba.setApellido("Guerrero");
-        prueba.setModelo(83);
-        prueba.setCantidadruedas(4);
-        List<Usuario> result = usuarioRepository.findAll();
-        usuarioRepository.save(prueba);
+        List<Usuario> dataFromCsv = dataReader.createUsuariosFromCSVFile("usuariodata.csv");
+        usuarioRepository.saveAll(dataFromCsv);
     }
+
 }
